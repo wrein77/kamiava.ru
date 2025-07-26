@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить аву</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f2; /* Розовый фон */
+            color: #d23369;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Анимированные узоры на фоне */
+        .pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        
+        .pattern div {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.2; }
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-buy {
+            background-color: #ff66b3;
+            color: white;
+            border: 2px solid #ff66b3;
+        }
+        
+        .btn-buy:hover {
+            background-color: #e60073;
+            border-color: #e60073;
+            transform: scale(1.05);
+        }
+        
+        .btn-price {
+            background-color: white;
+            color: #ff66b3;
+            border: 2px solid #ff66b3;
+        }
+        
+        .btn-price:hover {
+            background-color: #ffe6f2;
+            transform: scale(1.05);
+        }
+        
+        .price-display {
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            height: 30px;
+        }
+        
+        .reviews {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px dashed #ff66b3;
+        }
+        
+        .reviews h2 {
+            margin-bottom: 20px;
+        }
+        
+        .no-reviews {
+            font-style: italic;
+            color: #b85c8a;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированные узоры -->
+    <div class="pattern" id="pattern"></div>
+    
+    <div class="container">
+        <h1>Купить аву</h1>
+        
+        <a href="https://t.me/isllovei" class="btn btn-buy" target="_blank">Купить аву</a>
+        <br>
+        <button class="btn btn-price" id="priceBtn">Цена</button>
+        
+        <div class="price-display" id="priceDisplay"></div>
+        
+        <div class="reviews">
+            <h2>Отзывы</h2>
+            <div class="no-reviews">Отзывов пока нет</div>
+        </div>
+    </div>
+    
+    <script>
+        // Создание узоров на фоне
+        const pattern = document.getElementById('pattern');
+        const colors = ['#ff66b3', '#ff99cc', '#ffb3d9', '#ffcce6'];
+        
+        for (let i = 0; i < 30; i++) {
+            const node = document.createElement('div');
+            const size = Math.random() * 100 + 20;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const delay = Math.random() * 15;
+            const duration = 10 + Math.random() * 20;
+            
+            node.style.width = `${size}px`;
+            node.style.height = `${size}px`;
+            node.style.left = `${posX}%`;
+            node.style.top = `${posY}%`;
+            node.style.backgroundColor = color;
+            node.style.animationDelay = `${delay}s`;
+            node.style.animationDuration = `${duration}s`;
+            
+            pattern.appendChild(node);
+        }
+        
+        // Обработчик кнопки цены
+        document.getElementById('priceBtn').addEventListener('click', function() {
+            const display = document.getElementById('priceDisplay');
+            display.textContent = '7 звёзд';
+            
+            // Анимация появления
+            display.style.animation = 'none';
+            void display.offsetWidth; // Trigger reflow
+            display.style.animation = 'fadeIn 0.5s';
+        });
+    </script>
+</body>
+</html>
